@@ -6,7 +6,9 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@Getter @Setter @ToString
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Accounts extends AuditEntity {

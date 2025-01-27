@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface AccountsRepository extends JpaRepository<Accounts, Long> {
 
-    Optional<Accounts> findByEmployeesId(Long empId);
+    Optional<Accounts> findByEmpId(Long empId);
 
     @Transactional
     @Modifying
-    void deleteByEmployeesId(Long empId);
+    void deleteByEmpId(Long empId);
 }
