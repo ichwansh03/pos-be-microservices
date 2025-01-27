@@ -11,9 +11,5 @@ public interface EmployeesService {
 
     void registerEmployee(EmployeesDto employeesDto);
 
-    boolean updateAccount(String email);
-
     boolean deleteEmployees(String name);
-
-    boolean deleteAccount(String email);
 }
