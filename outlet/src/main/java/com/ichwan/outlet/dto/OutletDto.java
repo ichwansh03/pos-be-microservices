@@ -1,12 +1,17 @@
 package com.ichwan.outlet.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Schema(name = "Accounts", description = "Accounts Dto")
 public class OutletDto {
+
+    @Setter(onMethod_ = @JsonIgnore)
+    private Long outletId;
 
     @NotEmpty(message = "Name cannot be a null or empty")
     @Schema(description = "Name of outlet")

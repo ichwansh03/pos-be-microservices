@@ -1,10 +1,12 @@
 package com.ichwan.employee.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Schema(
@@ -12,6 +14,9 @@ import lombok.Data;
         description = "Employees Dto"
 )
 public class EmployeesDto {
+
+    @Setter(onMethod_ = @JsonIgnore)
+    private Long id;
 
     @Schema(description = "Name of the employee")
     @NotEmpty(message = "Name cannot be null or empty")
