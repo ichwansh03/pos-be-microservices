@@ -33,22 +33,22 @@ public class OutletServiceImpl implements OutletService{
     @Override
     public Outlet createOutlet(OutletDto outletDto) {
         Outlet outlet = new Outlet();
-        outlet.setName(outlet.getName());
-        outlet.setAddress(outlet.getAddress());
-        outlet.setPhone(outlet.getPhone());
-        outlet.setTotalEmployee(outletDto.getTotalEmployee());
-        outlet.setCreatedBy(outlet.getCreatedBy());
+        outlet.setName(outletDto.name());
+        outlet.setAddress(outletDto.address());
+        outlet.setPhone(outletDto.phone());
+        outlet.setTotalEmployee(outletDto.totalEmployees());
+        outlet.setCreatedBy(outletDto.createdBy());
         return outletRepository.save(outlet);
     }
 
     @Override
     public Outlet updateOutlet(OutletDto outletDto, Long id) {
         Outlet outlet = new Outlet();
-        outlet.setName(outlet.getName());
-        outlet.setAddress(outlet.getAddress());
-        outlet.setPhone(outlet.getPhone());
-        outlet.setTotalEmployee(outletDto.getTotalEmployee());
-        outlet.setCreatedBy(outlet.getCreatedBy());
+        outlet.setName(outletDto.name());
+        outlet.setAddress(outletDto.address());
+        outlet.setPhone(outletDto.phone());
+        outlet.setTotalEmployee(outletDto.totalEmployees());
+        outlet.setCreatedBy(outletDto.phone());
         outlet.setOutletId(id);
         return outletRepository.save(outlet);
     }

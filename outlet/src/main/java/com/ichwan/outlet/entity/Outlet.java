@@ -21,4 +21,5 @@ public class Outlet extends AuditEntity {
     private String address;
     private String phone;
     private Integer totalEmployee;
+    private String createdBy;
 }
