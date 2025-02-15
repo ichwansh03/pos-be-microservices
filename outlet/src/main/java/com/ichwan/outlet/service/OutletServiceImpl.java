@@ -48,7 +48,7 @@ public class OutletServiceImpl implements OutletService{
         outlet.setAddress(outletDto.address());
         outlet.setPhone(outletDto.phone());
         outlet.setTotalEmployee(outletDto.totalEmployees());
-        outlet.setCreatedBy(outletDto.phone());
+        outlet.setUpdatedBy(outletDto.updatedBy());
         outlet.setOutletId(id);
         return outletRepository.save(outlet);
     }

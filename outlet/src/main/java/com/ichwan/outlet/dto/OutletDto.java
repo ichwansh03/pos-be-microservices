@@ -1,13 +1,15 @@
 package com.ichwan.outlet.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Setter;
 
 @Schema(name = "Accounts", description = "Accounts Dto")
 public record OutletDto(
-        Long outletId,
+        @Setter(onMethod_ = @JsonIgnore) Long outletId,
         @NotEmpty(message = "Name cannot be a null or empty")
         @Schema(description = "Name of outlet") String name,
         @NotEmpty(message = "Address cannot be a null or empty")
@@ -17,6 +19,8 @@ public record OutletDto(
         @NotNull(message = "Total employee cannot be a null or empty")
         @Schema(description = "Total employee of outlet") Integer totalEmployees,
         @NotEmpty(message = "Created by cannot be a null or empty")
-        @Schema(description = "Created data of outlet") String createdBy
+        @Schema(description = "Created data of outlet") String createdBy,
+        @NotEmpty(message = "Updated by cannot be a null or empty")
+        @Schema(description = "Updated data of outlet") String updatedBy
 ) {
 }

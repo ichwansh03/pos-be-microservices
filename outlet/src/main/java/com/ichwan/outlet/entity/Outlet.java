@@ -5,6 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -12,7 +16,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Outlet extends AuditEntity {
+public class Outlet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +26,9 @@ public class Outlet extends AuditEntity {
     private String phone;
     private Integer totalEmployee;
     private String createdBy;
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+    private String updatedBy;
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
 }
