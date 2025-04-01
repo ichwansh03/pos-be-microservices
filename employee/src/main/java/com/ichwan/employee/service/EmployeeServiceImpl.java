@@ -10,6 +10,7 @@ import com.ichwan.employee.mapper.EmployeesMapper;
 import com.ichwan.employee.repository.AccountsRepository;
 import com.ichwan.employee.repository.EmployeesRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeesService{
     private AccountsRepository accountsRepository;
     private EmployeesRepository employeesRepository;
 
+    @Retryable(retryFor = {ResourceNotFoundException.class}, maxAttempts = 5)
     @Override
     public EmployeesDto getEmployee(String name) {
 

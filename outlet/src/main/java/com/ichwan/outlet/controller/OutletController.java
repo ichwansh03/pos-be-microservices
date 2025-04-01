@@ -3,6 +3,7 @@ package com.ichwan.outlet.controller;
 import com.ichwan.outlet.dto.OutletDto;
 import com.ichwan.outlet.mapper.ComponentMapper;
 import com.ichwan.outlet.service.OutletService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,7 +34,7 @@ public class OutletController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createOutlet(@RequestBody OutletDto outletDto) {
+    public ResponseEntity<?> createOutlet(@Valid @RequestBody OutletDto outletDto) {
         OutletDto model = ComponentMapper.mapEntityToModel(outletService.createOutlet(outletDto), OutletDto.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(model);
     }

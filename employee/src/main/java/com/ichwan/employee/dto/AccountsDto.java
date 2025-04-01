@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Schema(name = "Accounts", description = "Accounts Dto")
@@ -15,6 +16,7 @@ public class AccountsDto {
     @Schema(
             description = "Account Number of employee", example = "3454433243"
     )
+    @Setter(onMethod_ = @JsonIgnore)
     private Long accountNumber;
 
     @NotEmpty(message = "Email can not be a null or empty")
