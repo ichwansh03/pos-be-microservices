@@ -4,6 +4,8 @@ services:
     container_name: employee_pos
     ports:
       - "8080:8080"
+    secrets:
+      - pw_employee
     deploy:
       resources:
         limits:
@@ -15,6 +17,8 @@ services:
     container_name: outlet_pos
     ports:
       - "8081:8081"
+    secrets:
+      - pw_outlet
     deploy:
       resources:
         limits:
@@ -25,3 +29,9 @@ services:
 networks:
   posnet:
     driver: "bridge"
+
+secrets:
+  pw_employee:
+    file: ./pw_employee.txt
+  pw_outlet:
+    file: ../outlet/pw_outlet.txt
