@@ -12,6 +12,8 @@ services:
           memory: 700m
     networks:
       - posnet
+    volumes:
+      - db-data:/src/resources
   outlet:
     image: "pos/outlet:v1"
     container_name: outlet_pos
@@ -25,6 +27,8 @@ services:
           memory: 700m
     networks:
       - posnet
+    volumes:
+      - db-data:/src/resources
 
 networks:
   posnet:
@@ -35,3 +39,7 @@ secrets:
     file: ./pw_employee.txt
   pw_outlet:
     file: ../outlet/pw_outlet.txt
+
+volumes:
+  db-data:
+    driver: local
