@@ -1,0 +1,1 @@
+* To shutdown service in eureka, use endpoint localhost:<server_port>/actuator/shutdown with POST method

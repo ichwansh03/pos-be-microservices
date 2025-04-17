@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface OutletRepository extends JpaRepository<Outlet, Long> {
 
     Optional<Outlet> findByName(String name);
+
+    Optional<Outlet> findByPhone(String phone);
 }
