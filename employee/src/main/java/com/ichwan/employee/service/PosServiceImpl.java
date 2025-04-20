@@ -11,6 +11,8 @@ import com.ichwan.employee.repository.EmployeesRepository;
 import com.ichwan.employee.service.client.OutletFeignClient;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +24,11 @@ public class PosServiceImpl implements PosService {
     private OutletFeignClient outletFeignClient;
 
     @Override
+    @Retryable(
+            retryFor = {RuntimeException.class},
+            maxAttempts = 5,
+            backoff = @Backoff(delay = 2000, multiplier = 2) // Retry with exponential backoff
+    )
     public PosDetailDto fetchPosDetail(String phone) {
         Employees employees = employeesRepository.findByPhone(phone)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));

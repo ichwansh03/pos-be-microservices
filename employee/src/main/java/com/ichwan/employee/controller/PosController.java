@@ -23,7 +23,7 @@ public class PosController {
 
     //define endpoint fetchPosDetail from PosService
      @GetMapping("/fetch")
-     public ResponseEntity<?> fetchPosDetail(@RequestParam String phone) {
+     public ResponseEntity<PosDetailDto> fetchPosDetail(@RequestParam String phone) {
          PosDetailDto posDetailDto = posService.fetchPosDetail(phone);
          return ResponseEntity.status(HttpStatus.OK).body(posDetailDto);
      }
