@@ -17,6 +17,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="pos_server" />
+        <module name="gatewayserver" />
         <module name="eureka" />
       </profile>
       <profile name="Annotation profile for outlet" enabled="true">
@@ -35,6 +36,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="employee" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="gatewayserver" options="-parameters" />
       <module name="outlet" options="-parameters" />
       <module name="pos_server" options="-parameters" />
       <module name="product" options="-parameters" />

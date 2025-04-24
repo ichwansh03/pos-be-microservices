@@ -27,7 +27,7 @@ public class PosServiceImpl implements PosService {
     @Retryable(
             retryFor = {RuntimeException.class},
             maxAttempts = 5,
-            backoff = @Backoff(delay = 2000, multiplier = 2) // Retry with exponential backoff
+            backoff = @Backoff(delay = 2000, multiplier = 2, maxDelay = 10_000) // Retry with exponential backoff
     )
     public PosDetailDto fetchPosDetail(String phone) {
         Employees employees = employeesRepository.findByPhone(phone)
