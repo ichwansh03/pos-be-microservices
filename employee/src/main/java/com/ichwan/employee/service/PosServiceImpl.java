@@ -29,7 +29,7 @@ public class PosServiceImpl implements PosService {
             maxAttempts = 5,
             backoff = @Backoff(delay = 2000, multiplier = 2, maxDelay = 10_000) // Retry with exponential backoff
     )
-    public PosDetailDto fetchPosDetail(String phone) {
+    public PosDetailDto fetchPosDetail(String phone, String correlationId) {
         Employees employees = employeesRepository.findByPhone(phone)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
 
@@ -40,7 +40,7 @@ public class PosServiceImpl implements PosService {
         PosDetailDto posDetailDto = new PosDetailDto();
         posDetailDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
 
-        ResponseEntity<OutletDto> outletes = outletFeignClient.fetchOutletDetail(phone);
+        ResponseEntity<OutletDto> outletes = outletFeignClient.fetchOutletDetail(correlationId, phone);
         posDetailDto.setOutletDto(outletes.getBody());
 
         return null;
