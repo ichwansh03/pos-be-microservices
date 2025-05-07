@@ -27,12 +27,16 @@ public class GatewayserverApplication {
 				.route(p -> p
 						.path("/ichwan/outlet/**")
 						.filters(f -> f.rewritePath("/ichwan/outlet/(?<segment>.*)", "/${segment}")
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								.circuitBreaker(config -> config.setName("outletCircuitBraker")
+										.setFallbackUri("forward:/contactSupport")))
 						.uri("lb://OUTLET"))
 				.route(p -> p
 						.path("/ichwan/employee/**")
 						.filters(f -> f.rewritePath("/ichwan/employee/(?<segment>.*)", "/${segment}")
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								.circuitBreaker(config -> config.setName("employeeCircuitBraker")
+										.setFallbackUri("forward:/contactSupport")))
 						.uri("lb://EMPLOYEE")).build();
 	}
 }
