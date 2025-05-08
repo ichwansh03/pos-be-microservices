@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("outlet")
+@FeignClient(name = "outlet", fallback = OutletFallback.class)
 public interface OutletFeignClient {
 
     //call controller method from client
