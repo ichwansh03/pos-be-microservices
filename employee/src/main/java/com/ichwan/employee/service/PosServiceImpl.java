@@ -41,7 +41,7 @@ public class PosServiceImpl implements PosService {
         posDetailDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
 
         ResponseEntity<OutletDto> outletes = outletFeignClient.fetchOutletDetail(correlationId, phone);
-        posDetailDto.setOutletDto(outletes.getBody());
+        if (outletes != null) posDetailDto.setOutletDto(outletes.getBody());
 
         return null;
     }
