@@ -2,7 +2,7 @@ package com.ichwan.employee.controller;
 
 import com.ichwan.employee.dto.client.PosDetailDto;
 import com.ichwan.employee.service.PosService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Validated
 public class PosController {
 
     public static final Logger logger = LoggerFactory.getLogger(PosController.class);
-    private PosService posService;
+    private final PosService posService;
 
     //define endpoint fetchPosDetail from PosService
      @GetMapping("/fetch")
