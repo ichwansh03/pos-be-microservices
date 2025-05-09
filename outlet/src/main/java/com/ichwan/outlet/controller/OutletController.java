@@ -4,7 +4,7 @@ import com.ichwan.outlet.dto.OutletDto;
 import com.ichwan.outlet.mapper.ComponentMapper;
 import com.ichwan.outlet.service.OutletService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Validated
 public class OutletController {
 
-    private OutletService outletService;
+    private final OutletService outletService;
 
     @GetMapping
     public ResponseEntity<?> getPaginatedOutlet(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {

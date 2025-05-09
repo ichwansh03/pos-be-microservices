@@ -1,11 +1,12 @@
 package com.ichwan.employee.controller;
 
 import com.ichwan.employee.dto.AccountsDto;
+import com.ichwan.employee.dto.EmployeeInfoDto;
 import com.ichwan.employee.dto.EmployeesDto;
 import com.ichwan.employee.dto.ResponseDto;
 import com.ichwan.employee.service.EmployeesService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Validated
 public class EmployeeController {
 
-    private EmployeesService employeesService;
+    private final EmployeesService employeesService;
 
     @PostMapping("/create/employee")
     public ResponseEntity<ResponseDto> createEmployee(@Valid @RequestBody EmployeesDto employeesDto) {
@@ -43,5 +44,11 @@ public class EmployeeController {
         boolean isDeleted = employeesService.deleteEmployees(name);
         if (isDeleted) return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new ResponseDto(HttpStatus.NO_CONTENT, "employee successfully deleted"));
         else return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(HttpStatus.EXPECTATION_FAILED, "failed to delete employee"));
+    }
+
+    @GetMapping("/employee-info")
+    public ResponseEntity<EmployeeInfoDto> getEmployeeInfo() {
+        EmployeeInfoDto infoDto = new EmployeeInfoDto();
+        return ResponseEntity.status(HttpStatus.OK).body(infoDto);
     }
 }
