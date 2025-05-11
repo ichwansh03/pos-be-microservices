@@ -1,12 +1,16 @@
 package com.ichwan.employee.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 @ConfigurationProperties(prefix = "employee")
-@Data
+@Component
+@Getter
+@Setter
 public class EmployeeInfoDto {
 
     private String message;
