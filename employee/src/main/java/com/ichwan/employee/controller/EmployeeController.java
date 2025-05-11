@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
 
     private final EmployeesService employeesService;
+    private final EmployeeInfoDto employeeInfoDto;
 
     @PostMapping("/create/employee")
     public ResponseEntity<ResponseDto> createEmployee(@Valid @RequestBody EmployeesDto employeesDto) {
@@ -48,7 +49,6 @@ public class EmployeeController {
 
     @GetMapping("/employee-info")
     public ResponseEntity<EmployeeInfoDto> getEmployeeInfo() {
-        EmployeeInfoDto infoDto = new EmployeeInfoDto();
-        return ResponseEntity.status(HttpStatus.OK).body(infoDto);
+        return ResponseEntity.status(HttpStatus.OK).body(employeeInfoDto);
     }
 }
