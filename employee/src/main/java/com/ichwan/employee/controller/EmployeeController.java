@@ -5,8 +5,11 @@ import com.ichwan.employee.dto.EmployeeInfoDto;
 import com.ichwan.employee.dto.EmployeesDto;
 import com.ichwan.employee.dto.ResponseDto;
 import com.ichwan.employee.service.EmployeesService;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ public class EmployeeController {
 
     private final EmployeesService employeesService;
     private final EmployeeInfoDto employeeInfoDto;
+
+    public static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     @PostMapping("/create/employee")
     public ResponseEntity<ResponseDto> createEmployee(@Valid @RequestBody EmployeesDto employeesDto) {
@@ -50,5 +55,16 @@ public class EmployeeController {
     @GetMapping("/employee-info")
     public ResponseEntity<EmployeeInfoDto> getEmployeeInfo() {
         return ResponseEntity.status(HttpStatus.OK).body(employeeInfoDto);
+    }
+
+    @Retry(name = "getVersionInfo", fallbackMethod = "getVersionInfoFallback")
+    @GetMapping("/version-info")
+    public ResponseEntity<String> getVersionInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body("Version 1.1");
+    }
+
+    public ResponseEntity<String> getVersionInfoFallback(Throwable throwable) {
+        logger.debug("getVersionInfoFallback called with exception: {}", throwable.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Version 1.0.0");
     }
 }
