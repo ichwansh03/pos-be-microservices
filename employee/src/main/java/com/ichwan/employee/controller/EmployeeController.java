@@ -5,6 +5,7 @@ import com.ichwan.employee.dto.EmployeeInfoDto;
 import com.ichwan.employee.dto.EmployeesDto;
 import com.ichwan.employee.dto.ResponseDto;
 import com.ichwan.employee.service.EmployeesService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -52,9 +53,14 @@ public class EmployeeController {
         else return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(HttpStatus.EXPECTATION_FAILED, "failed to delete employee"));
     }
 
+    @RateLimiter(name = "getEmployeeInfo", fallbackMethod = "getEmployeeInfoFallback")
     @GetMapping("/employee-info")
     public ResponseEntity<EmployeeInfoDto> getEmployeeInfo() {
         return ResponseEntity.status(HttpStatus.OK).body(employeeInfoDto);
+    }
+
+    public ResponseEntity<String> getEmployeeInfoFallback(Throwable throwable) {
+        return ResponseEntity.status(HttpStatus.OK).body("server is busy! please try again later");
     }
 
     @Retry(name = "getVersionInfo", fallbackMethod = "getVersionInfoFallback")

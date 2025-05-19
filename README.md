@@ -2,3 +2,6 @@
 * To shutdown service in eureka, use endpoint localhost:<server_port>/actuator/shutdown with POST method
 * Use annotations EnableFeignClient to access other services from endpoint (must be implement DTO client)
 * Run first the pos_server, then the eureka server, then the gateway server and other services
+* Access endpoint from gateway server in localhost:8084/ichwan/<service_name>/<endpoint>
+* Use Apache Benchmark to test the performance of the service with implement rate limiter and also run redis from docker
+* Docs of [Resilience4j](https://resilience4j.readme.io/docs/getting-started)
