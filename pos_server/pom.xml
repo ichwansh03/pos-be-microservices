@@ -71,7 +71,7 @@
 				<version>3.4.5</version>
 				<configuration>
 					<to>
-						<image>pos/posserver:v1</image>
+						<image>ichwansh34/posserver:v2</image>
 					</to>
 				</configuration>
 			</plugin>
