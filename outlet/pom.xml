@@ -118,7 +118,7 @@
 				<version>3.4.5</version>
 				<configuration>
 					<to>
-						<image>pos/outlet:v1</image>
+						<image>ichwansh34/outlet:v2</image>
 					</to>
 				</configuration>
 			</plugin>
