@@ -12,6 +12,7 @@
 	<artifactId>gatewayserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gatewayserver</name>
+	<packaging>jar</packaging>
 	<description>Demo project for Spring Cloud Gateway</description>
 	<url/>
 	<licenses>
@@ -96,7 +97,7 @@
 				<version>3.4.5</version>
 				<configuration>
 					<to>
-						<image>pos/gatewayserver:v1</image>
+						<image>ichwansh34/gatewayserver:v2</image>
 					</to>
 				</configuration>
 			</plugin>

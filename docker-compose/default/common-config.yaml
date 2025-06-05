@@ -1,7 +1,7 @@
 services:
   network-deploy-service:
     networks:
-      - pos
+      - ichwansh34
 
   microservice-base-config:
     extends:
