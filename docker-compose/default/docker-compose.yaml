@@ -201,8 +201,8 @@ services:
     healthcheck:
       test: ["CMD", "service", "nginx", "status"]
       interval: 10s
-      timeout: 5s
-      retries: 5
+      timeout: 10s
+      retries: 10
     extends:
       file: common-config.yaml
       service: microservice-eureka-config
@@ -211,14 +211,15 @@ services:
   posserver:
     image: "ichwansh34/posserver:v2"
     container_name: posserver-ms
+    platform: linux/amd64
     ports:
       - "8082:8082"
     healthcheck:
       test: "curl --fail --silent localhost:8082/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 20s
+      timeout: 10s
+      retries: 24
+      start_period: 30s
     extends:
       file: common-config.yaml
       service: microservice-base-config
@@ -226,6 +227,7 @@ services:
   eureka:
     image: "ichwansh34/eurekaserver:v2"
     container_name: eurekaserver-ms
+    platform: linux/amd64
     ports:
       - "8083:8083"
     depends_on:
@@ -246,6 +248,7 @@ services:
   employee:
     image: "ichwansh34/employee:v2"
     container_name: employee-ms
+    platform: linux/amd64
     ports:
       - "8080:8080"
     depends_on:
@@ -268,6 +271,7 @@ services:
   outlet:
     image: "ichwansh34/outlet:v2"
     container_name: outlet-ms
+    platform: linux/amd64
     ports:
       - "8081:8081"
     depends_on:
@@ -290,6 +294,7 @@ services:
   gatewayserver:
     image: "ichwansh34/gatewayserver:v2"
     container_name: gatewayserver-ms
+    platform: linux/amd64
     ports:
       - "8084:8084"
     depends_on:
