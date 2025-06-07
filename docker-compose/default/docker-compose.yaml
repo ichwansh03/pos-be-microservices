@@ -52,7 +52,7 @@ services:
       - gateway
     extends:
       file: common-config.yaml
-      service: microservice-eureka-config
+      service: network-deploy-service
 
 
   minio:
@@ -80,10 +80,10 @@ services:
       retries: 5
     extends:
       file: common-config.yaml
-      service: microservice-eureka-config
+      service: network-deploy-service
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.1.0
     volumes:
       - ../observability/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
     ports:
@@ -116,7 +116,7 @@ services:
       retries: 5
     extends:
       file: common-config.yaml
-      service: microservice-eureka-config
+      service: network-deploy-service
 
 
   backend:
@@ -131,7 +131,7 @@ services:
       - gateway
     extends:
       file: common-config.yaml
-      service: microservice-eureka-config
+      service: network-deploy-service
 
 
 
@@ -203,7 +203,7 @@ services:
       retries: 10
     extends:
       file: common-config.yaml
-      service: microservice-eureka-config
+      service: network-deploy-service
 
 
   posserver:
@@ -217,7 +217,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 24
-      start_period: 30s
+      start_period: 60s
     extends:
       file: common-config.yaml
       service: microservice-base-config
@@ -236,7 +236,7 @@ services:
       interval: 20s
       timeout: 10s
       retries: 24
-      start_period: 30s
+      start_period: 60s
     extends:
       file: common-config.yaml
       service: microservice-configserver-config
@@ -259,7 +259,7 @@ services:
       interval: 20s
       timeout: 10s
       retries: 24
-      start_period: 30s
+      start_period: 60s
     environment:
       SPRING_APPLICATION_NAME: "employee"
     extends:
@@ -282,7 +282,7 @@ services:
       interval: 20s
       timeout: 10s
       retries: 24
-      start_period: 30s
+      start_period: 60s
     environment:
       SPRING_APPLICATION_NAME: "outlet"
     extends:
