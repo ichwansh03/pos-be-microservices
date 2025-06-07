@@ -11,9 +11,9 @@ run-name: Deploy to ${{ github.ref_name }} by @${{ github.actor }}
 
 on:
   push:
-    branches: 'grafana'
+    branches-ignore: ["main"]
   pull_request:
-    branches: 'main'
+    branches: ["main"]
 
 jobs:
   build:
@@ -30,19 +30,19 @@ jobs:
           cache: maven
 
       - name: Build maven employee
-        run: mvn -B package --file employee/pom.xml
+        run: mvn -B clean install --file employee/pom.xml
 
       - name: Build maven eureka
-        run: mvn -B package --file eureka/pom.xml
+        run: mvn -B clean install --file eureka/pom.xml
 
       - name: Build maven gatewayserver
-        run: mvn -B package --file gatewayserver/pom.xml
+        run: mvn -B clean install --file gatewayserver/pom.xml
 
       - name: Build maven outlet
-        run: mvn -B package --file outlet/pom.xml
+        run: mvn -B clean install --file outlet/pom.xml
 
       - name: Build maven employee
-        run: mvn -B package --file pos_server/pom.xml
+        run: mvn -B clean install --file pos_server/pom.xml
 
       - name: Update dependency graph
         working-directory: eureka
