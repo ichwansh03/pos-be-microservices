@@ -5,3 +5,4 @@
 * Access endpoint from gateway server in localhost:8084/ichwan/<service_name>/<endpoint>
 * Use Apache Benchmark to test the performance of the service with implement rate limiter and also run redis from docker
 * Docs of [Resilience4j](https://resilience4j.readme.io/docs/getting-started)
+* Access grafana in localhost:3000 and prometheus in localhost:9090/targets
