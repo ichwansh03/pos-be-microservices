@@ -23,8 +23,9 @@ public class PosController {
     //define endpoint fetchPosDetail from PosService
      @GetMapping("/fetch")
      public ResponseEntity<PosDetailDto> fetchPosDetail(@RequestHeader("pos-correlation-id") String correlationId, @RequestParam String phone) {
-            logger.info("fetchPosDetail called with correlationId: {} and phone: {}", correlationId, phone);
+         logger.debug("fetchPosDetail method started");
          PosDetailDto posDetailDto = posService.fetchPosDetail(phone, correlationId);
+         logger.debug("fetchPosDetail method ended");
          return ResponseEntity.status(HttpStatus.OK).body(posDetailDto);
      }
 }

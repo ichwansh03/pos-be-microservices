@@ -97,6 +97,19 @@ services:
       file: common-config.yaml
       service: network-deploy-service
 
+  tempo:
+    image: grafana/tempo
+    container_name: tempo
+    command: -config.file /etc/tempo/config.yaml
+    ports:
+      - "3110:3100"
+      - "4318:4318"
+    volumes:
+      - ../observability/tempo/tempo.yaml:/etc/tempo-config.yaml
+    extends:
+      file: common-config.yaml
+      service: network-deploy-service
+
   grafana:
     image: grafana/grafana:latest
     environment:
@@ -226,6 +239,8 @@ services:
     extends:
       file: common-config.yaml
       service: microservice-base-config
+    environment:
+      OTEL_SERVICE_NAME: "posserver"
 
   eureka:
     image: "ichwansh34/eurekaserver:v2"
@@ -247,6 +262,7 @@ services:
       service: microservice-configserver-config
     environment:
       SPRING_APPLICATION_NAME: "eureka"
+      OTEL_SERVICE_NAME: "eureka"
 
   employee:
     image: "ichwansh34/employee:v2"
@@ -267,6 +283,7 @@ services:
       start_period: 60s
     environment:
       SPRING_APPLICATION_NAME: "employee"
+      OTEL_SERVICE_NAME: "employee"
     extends:
       file: common-config.yaml
       service: microservice-eureka-config
@@ -290,6 +307,7 @@ services:
       start_period: 60s
     environment:
       SPRING_APPLICATION_NAME: "outlet"
+      OTEL_SERVICE_NAME: "outlet"
     extends:
       file: common-config.yaml
       service: microservice-eureka-config
@@ -307,6 +325,7 @@ services:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "gatewayserver"
+      OTEL_SERVICE_NAME: "gatewayserver"
     extends:
       file: common-config.yaml
       service: microservice-eureka-config
