@@ -29,7 +29,6 @@ public class EmployeesDto {
 
     @Schema(description = "Age of the employee")
     @NotEmpty(message = "Age cannot be null or empty")
-    @Pattern(regexp = "(^$|[0-9]{10})", message = "Age should be a number")
     private String age;
 
     @Schema(description = "Phone of the employee", example = "085766689697")
