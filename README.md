@@ -6,3 +6,4 @@
 * Use Apache Benchmark to test the performance of the service with implement rate limiter and also run redis from docker
 * Docs of [Resilience4j](https://resilience4j.readme.io/docs/getting-started)
 * Access grafana in localhost:3000 and prometheus in localhost:9090/targets
+* Start to config keycloak from [docker](https://www.keycloak.org/getting-started/getting-started-docker)
