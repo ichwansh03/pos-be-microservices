@@ -20,7 +20,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity security) {
-        security.authorizeExchange(exchanges -> exchanges.pathMatchers(HttpMethod.GET).permitAll()
+        security.authorizeExchange(exchanges -> exchanges.pathMatchers(HttpMethod.GET).authenticated()
                 .pathMatchers("/ichwan/employee/**").hasRole("EMPLOYEE")
                 .pathMatchers("/ichwan/outlet/**").hasRole("OUTLET"))
                 .oauth2ResourceServer(oAuth2ResourceServerSpec -> oAuth2ResourceServerSpec

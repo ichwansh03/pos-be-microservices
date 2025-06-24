@@ -8,3 +8,4 @@
 * Access grafana in localhost:3000 and prometheus in localhost:9090/targets
 * Start to config keycloak from [docker](https://www.keycloak.org/getting-started/getting-started-docker)
 * Try [oauth2 playground](https://www.oauth.com/playground/) to test the oauth2 flow
+* [keycloak docs](https://www.keycloak.org/docs-api/latest/rest-api/index.html)
