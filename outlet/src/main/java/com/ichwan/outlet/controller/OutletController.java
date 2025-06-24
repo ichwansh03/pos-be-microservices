@@ -1,10 +1,12 @@
 package com.ichwan.outlet.controller;
 
 import com.ichwan.outlet.dto.OutletDto;
+import com.ichwan.outlet.dto.OutletInfoDto;
 import com.ichwan.outlet.mapper.ComponentMapper;
 import com.ichwan.outlet.service.OutletService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,10 @@ import java.util.List;
 public class OutletController {
 
     private final OutletService outletService;
+    private final OutletInfoDto outletInfoDto;
+
+    @Value("${info.app.version}")
+    private String version;
 
     @GetMapping
     public ResponseEntity<?> getPaginatedOutlet(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
@@ -49,5 +55,15 @@ public class OutletController {
     public ResponseEntity<?> deleteOutlet(@PathVariable Long id) {
         outletService.deleteOutlet(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("successfully remove data with id "+id);
+    }
+
+    @GetMapping("/outlet-info")
+    public ResponseEntity<OutletInfoDto> getEmployeeInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body(outletInfoDto);
+    }
+
+    @GetMapping("/version-info")
+    public ResponseEntity<String> getVersionInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body("Version " + version);
     }
 }
