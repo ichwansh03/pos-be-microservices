@@ -25,7 +25,7 @@ public class MessageFunctions {
     @Bean
     public Function<EmployeeMessageDto, Long> sms(){
         return employeeMessageDto -> {
-            logger.info("Processing SMS for employee: {}", employeeMessageDto.toString());
+            logger.info("Processing SMS for employee: {}", employeeMessageDto.name());
             // Here you would implement the logic to send an sms
             // For now, we just log the action
             return employeeMessageDto.id();

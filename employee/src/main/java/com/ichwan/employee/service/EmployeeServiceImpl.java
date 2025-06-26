@@ -1,6 +1,7 @@
 package com.ichwan.employee.service;
 
 import com.ichwan.employee.dto.AccountsDto;
+import com.ichwan.employee.dto.EmployeeMessageDto;
 import com.ichwan.employee.dto.EmployeesDto;
 import com.ichwan.employee.entity.Accounts;
 import com.ichwan.employee.entity.Employees;
@@ -10,6 +11,8 @@ import com.ichwan.employee.mapper.EmployeesMapper;
 import com.ichwan.employee.repository.AccountsRepository;
 import com.ichwan.employee.repository.EmployeesRepository;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,8 @@ import java.util.Random;
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeesService{
 
+    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(EmployeeServiceImpl.class);
+    private final StreamBridge streamBridge;
     private AccountsRepository accountsRepository;
     private EmployeesRepository employeesRepository;
 
@@ -48,13 +53,21 @@ public class EmployeeServiceImpl implements EmployeesService{
 
     @Override
     public void registerEmployee(EmployeesDto employeesDto) {
-        Employees employees = new Employees();
-        Optional<Employees> name = employeesRepository.findByName(employees.getName());
-        if (name.isPresent()){
-            throw new EmployeeAlreadyExistsException("Employees already registered: "+employeesDto.getName());
+        Optional<Employees> existingEmployee = employeesRepository.findByName(employeesDto.getName());
+        if (existingEmployee.isPresent()) {
+            throw new EmployeeAlreadyExistsException("Employees already registered: " + employeesDto.getName());
         }
 
+        Employees employees = EmployeesMapper.mapToEmployees(employeesDto, new Employees());
         employeesRepository.save(employees);
+        sendCommunication(employees);
+    }
+
+    private void sendCommunication(Employees employees) {
+        var emplooyeeMsgDto = new EmployeeMessageDto(employees.getEmpId(), employees.getName(), employees.getPhone(), employees.getAddress(), employees.getInBranch(), employees.getAge());
+        logger.info("Sending communication for employee: {}", emplooyeeMsgDto);
+        var result = streamBridge.send("employee-out-0", emplooyeeMsgDto);
+        logger.info("Communication sent successfully: {}", result);
     }
 
     @Override

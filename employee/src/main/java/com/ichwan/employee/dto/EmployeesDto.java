@@ -38,7 +38,4 @@ public class EmployeesDto {
 
     @Schema(description = "Placement outlet of employee")
     private String inBranch;
-
-    @Schema(description = "Account detail of the employee")
-    private AccountsDto accountsDto;
 }
