@@ -78,4 +78,18 @@ public class EmployeeServiceImpl implements EmployeesService{
         employeesRepository.deleteById(employees.getEmpId());
         return true;
     }
+
+    @Override
+    public boolean updateCommunicationStatus(Long id) {
+        boolean isUpdated = false;
+        if (id != null) {
+            Employees employees = employeesRepository.findById(id).orElseThrow(
+                    () -> new ResourceNotFoundException("Employee not found")
+            );
+            employees.setCommunicationSw(true);
+            employeesRepository.save(employees);
+            isUpdated = true;
+        }
+        return isUpdated;
+    }
 }
