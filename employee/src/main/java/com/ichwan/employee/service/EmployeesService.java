@@ -12,4 +12,6 @@ public interface EmployeesService {
     void registerEmployee(EmployeesDto employeesDto);
 
     boolean deleteEmployees(String name);
+
+    boolean updateCommunicationStatus(Long id);
 }

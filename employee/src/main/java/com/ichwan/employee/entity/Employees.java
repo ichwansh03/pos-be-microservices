@@ -21,4 +21,6 @@ public class Employees extends AuditEntity {
     private String phone;
     @Column(name = "in_branch")
     private String inBranch;
+    @Column(name = "communication_sw")
+    private Boolean communicationSw;
 }
