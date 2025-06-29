@@ -9,4 +9,4 @@
 * Start to config keycloak from [docker](https://www.keycloak.org/getting-started/getting-started-docker)
 * Try [oauth2 playground](https://www.oauth.com/playground/) to test the oauth2 flow
 * [keycloak docs](https://www.keycloak.org/docs-api/latest/rest-api/index.html)
-* latest RabbitMQ 4.x `docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`
+* latest RabbitMQ 4.x `docker run -it -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`
