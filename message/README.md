@@ -10,3 +10,4 @@
 * header exchange, routing key tidak digunakan, pesan akan dikirim ke queue yang memiliki header yang sesuai dengan header pada pesan
 * Policy, aturan yang diterapkan pada queue atau exchange, misalnya untuk mengatur TTL (Time To Live) pesan, maksimal ukuran pesan, dan lain-lain
 * [RabbitMQ Client liblary](https://www.rabbitmq.com/client-libraries/devtools)
+* [RabbitMQ Binder Stream](https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_binder_overview)
