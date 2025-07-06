@@ -1,5 +1,6 @@
 package com.ichwan.employee.service;
 
+import com.ichwan.employee.config.MessageConfig;
 import com.ichwan.employee.dto.AccountsDto;
 import com.ichwan.employee.dto.EmployeeMessageDto;
 import com.ichwan.employee.dto.EmployeesDto;
@@ -12,6 +13,7 @@ import com.ichwan.employee.repository.AccountsRepository;
 import com.ichwan.employee.repository.EmployeesRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class EmployeeServiceImpl implements EmployeesService{
 
     private static final Logger logger = org.slf4j.LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private final StreamBridge streamBridge;
+    private final AmqpTemplate amqpTemplate;
     private AccountsRepository accountsRepository;
     private EmployeesRepository employeesRepository;
 
@@ -60,6 +63,7 @@ public class EmployeeServiceImpl implements EmployeesService{
 
         Employees employees = EmployeesMapper.mapToEmployees(employeesDto, new Employees());
         employeesRepository.save(employees);
+        amqpTemplate.convertAndSend(MessageConfig.EXCHANGE, MessageConfig.ROUTING_KEY, employees);
         sendCommunication(employees);
     }
 
