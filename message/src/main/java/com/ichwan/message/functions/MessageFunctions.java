@@ -15,7 +15,7 @@ public class MessageFunctions {
     @Bean
     public Function<EmployeeMessageDto, EmployeeMessageDto> email(){
         return employeeMessageDto -> {
-            logger.info("Processing email for employee: {}", employeeMessageDto.toString());
+            logger.info("Processing email for employee: {}", employeeMessageDto);
             // Here you would implement the logic to send an email
             // For now, we just log the action
             return employeeMessageDto;
