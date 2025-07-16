@@ -1,0 +1,36 @@
+# every container deployment to cluster, we need to create this config. This syntax is different from docker-compose
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posserver-deployment
+  labels:
+    app: posserver
+spec:
+  replicas: 1 #only implement in 1 pod
+  selector:
+    matchLabels:
+      app: posserver
+  template:
+    metadata:
+      labels:
+        app: posserver
+    spec:
+      containers:
+        - name: posserver
+          image: ichwansh34/posserver:v2
+          ports:
+            - containerPort: 8082
+--- #separate yaml config
+#expose this service to external
+apiVersion: v1
+kind: Service
+metadata:
+  name: posserver
+spec:
+  selector:
+    app: posserver
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
