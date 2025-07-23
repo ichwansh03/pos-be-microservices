@@ -1,0 +1,15 @@
+apiVersion: v1 #versi v1 digunakan untuk resource ConfigMap/Service
+kind: ConfigMap
+metadata:
+  name: pos-configmap
+data:
+  SPRING_CONFIG_IMPORT: "configserver:http://posserver:8082/"
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8083/eureka/"
+  CONFIGSERVER_APPLICATION_NAME: "posserver"
+  EUREKA_APPLICATION_NAME: "eurekaserver"
+  EMPLOYEE_APPLICATION_NAME: "employee"
+  OUTLET_APPLICATION_NAME: "outlet"
+  GATEWAY_APPLICATION_NAME: "gatewayserver"
+  KEYCLOAK_ADMIN: "admin"
+  KEYCLOAK_ADMIN_PASSWORD: "admin"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: "http://keycloak:7080/realms/master/protocol/openid-connect/certs"

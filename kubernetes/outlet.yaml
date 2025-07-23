@@ -1,0 +1,53 @@
+apiVersion: apps/v1 #digunakan untuk resource deployment/StatefulSet/DaemonSet/ReplicaSet
+kind: Deployment
+metadata:
+  name: outlet-deployment
+  labels:
+    app: outlet
+spec:
+  replicas: 1 #jumlah pod yang ingin dijalankan dan memastikan bahwa selalu ada 1 pod yg aktif
+  selector:
+    matchLabels:
+      app: outlet
+  template:
+    metadata:
+      labels:
+        app: outlet
+    spec:
+      containers:
+        - name: outlet
+          image: ichwansh34/outlet:v2
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: pos-configmap
+                  key: OUTLET_APPLICATION_NAME
+            - name: SPRING_CONFIG_IMPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: pos-configmap
+                  key: SPRING_CONFIG_IMPORT
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              valueFrom:
+                configMapKeyRef:
+                  name: pos-configmap
+                  key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: outlet
+  labels:
+    app: outlet
+spec:
+  selector:
+    app: outlet
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
