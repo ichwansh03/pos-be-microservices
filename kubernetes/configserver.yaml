@@ -1,4 +1,5 @@
 # every container deployment to cluster, we need to create this config. This syntax is different from docker-compose
+# to deploy this service, use command kubectl apply -f filename.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

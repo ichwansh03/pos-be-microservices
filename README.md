@@ -10,3 +10,5 @@
 * Try [oauth2 playground](https://www.oauth.com/playground/) to test the oauth2 flow
 * [keycloak docs](https://www.keycloak.org/docs-api/latest/rest-api/index.html)
 * latest RabbitMQ 4.x `docker run -it -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`
+* Use this command to run dashboard `kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443` and access to https://locahost:8443
+* Use command secrets for admin-user to long-live bearer `kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}" | base64 -d`
