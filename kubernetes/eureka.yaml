@@ -1,22 +1,22 @@
 apiVersion: apps/v1 #digunakan untuk resource deployment/StatefulSet/DaemonSet/ReplicaSet
 kind: Deployment
 metadata:
-  name: eurekaserver-deployment
+  name: eureka-deployment
   labels:
-    app: eurekaserver
+    app: eureka
 spec:
   replicas: 1 #jumlah pod yang ingin dijalankan dan memastikan bahwa selalu ada 1 pod yg aktif
   selector:
     matchLabels:
-      app: eurekaserver
+      app: eureka
   template:
     metadata:
       labels:
-        app: eurekaserver
+        app: eureka
     spec:
       containers:
-      - name: eurekaserver
-        image: ichwansh34/eurekaserver:v2
+      - name: eureka
+        image: ichwansh34/eureka:v2
         ports:
         - containerPort: 8083
         env:
@@ -35,12 +35,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eurekaserver
+  name: eureka
   labels:
-    app: eurekaserver
+    app: eureka
 spec:
   selector:
-    app: eurekaserver
+    app: eureka
   type: LoadBalancer
   ports:
     - protocol: TCP
