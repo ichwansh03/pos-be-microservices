@@ -19,6 +19,10 @@ spec:
       containers:
         - name: posserver
           image: ichwansh34/posserver:v2
+          #resources:
+          #  limits:
+          #    memory: "512Mi"
+          #    cpu: "500m"
           ports:
             - containerPort: 8082
 --- #separate yaml config
