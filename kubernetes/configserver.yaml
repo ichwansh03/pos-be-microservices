@@ -19,10 +19,15 @@ spec:
       containers:
         - name: posserver
           image: ichwansh34/posserver:v2
+          #resources:
+          #  limits:
+          #    memory: "512Mi"
+          #    cpu: "500m"
           ports:
             - containerPort: 8082
 --- #separate yaml config
-#expose this service to external
+#expose this service to external cluster
+#service provide stable IP and DNS so remain the app will be accessible whether pod is changed
 apiVersion: v1
 kind: Service
 metadata:
@@ -30,7 +35,7 @@ metadata:
 spec:
   selector:
     app: posserver
-  type: LoadBalancer
+  type: LoadBalancer #distribute traffic to active pod and round-robin
   ports:
     - protocol: TCP
       port: 8082

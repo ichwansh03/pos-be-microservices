@@ -84,7 +84,7 @@
 				<version>3.4.5</version>
 				<configuration>
 					<to>
-						<image>ichwansh34/eurekaserver:v2</image>
+						<image>ichwansh34/eureka:v2</image>
 					</to>
 				</configuration>
 			</plugin>

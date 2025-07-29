@@ -17,6 +17,10 @@ spec:
       containers:
         - name: employee
           image: ichwansh34/employee:v2
+          #resources:
+          #  limits:
+          #    memory: "512Mi"
+          #    cpu: "500m"
           ports:
             - containerPort: 8080
           env:
