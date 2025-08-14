@@ -17,3 +17,6 @@
 * Scheduler in k8s is watches for new workloads/ports and assign them to a node based on several scheduling factors (like rollback-rollout pods).
 * Worker node have 3 main concepts: kubelet (main agent that runs on every node also report node state to master node), container runtime (pulling image and start container from container registry i.e docker, [containerd](https://containerd.io)), kube proxy (routing net traffic to load balanced service)
 * [minikube handbook](https://minikube.sigs.k8s.io/docs/handbook/)
+* `helm create pos-common` to create helm template
+* `helm dependencies build` to build helm charts
+* search for any chart template helm from community in [bitnami](https://github.com/bitnami/charts)

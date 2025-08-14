@@ -1,0 +1,6 @@
+dependencies:
+- name: pos-common
+  repository: file://../../pos-common
+  version: 0.1.0
+digest: sha256:669943179bc2ead09db0eeabd938d79244171480cf20b42001e5ad7b7d14d029
+generated: "2025-08-07T06:31:03.367266+07:00"

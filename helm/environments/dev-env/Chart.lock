@@ -1,0 +1,24 @@
+dependencies:
+- name: pos-common
+  repository: file://../../pos-common
+  version: 0.1.0
+- name: posserver
+  repository: file://../../pos-services/posserver
+  version: 0.1.0
+- name: eureka
+  repository: file://../../pos-services/eureka
+  version: 0.1.0
+- name: employee
+  repository: file://../../pos-services/employee
+  version: 0.1.0
+- name: outlet
+  repository: file://../../pos-services/outlet
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../pos-services/gatewayserver
+  version: 0.1.0
+- name: message
+  repository: file://../../pos-services/message
+  version: 0.1.0
+digest: sha256:af90d337ea85f8f7bd67b2f7aa062bc7e563c4a2ddb4ddace32a65d0be5ea76e
+generated: "2025-08-10T16:22:41.972309+07:00"
