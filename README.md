@@ -19,7 +19,8 @@
 * [minikube handbook](https://minikube.sigs.k8s.io/docs/handbook/)
 * If dashboard cannot open, run this command to check the kubernetes-dashboard-kong is crashloopbackoff or not `kubectl get pods -n kubernetes-dashboard`, if yes delete the pod `kubectl delete pod -n kubernetes-dashboard kubernetes-dashboard-kong-xxxxx` and run again command to forward kubernetes-dashboard
 * Show pods with IP used command `kubectl get pods -o wide`
+* Any protocols can be used in kubernetes, [service protocols](https://kubernetes.io/docs/reference/networking/service-protocols/)
 * `helm create pos-common` to create helm template
 * `helm dependencies build` to build helm charts
 * search for any chart template helm from community in [bitnami](https://github.com/bitnami/charts)
-* Use alias in command, i.e `alias k="kubectl"`
+* Use alias in command, i.e `alias k="kubectl"` and you can upload yaml file directly from kubernetes dashboard, click on + button and upload yaml file
