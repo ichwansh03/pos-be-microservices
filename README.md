@@ -24,3 +24,5 @@
 * `helm dependencies build` to build helm charts
 * search for any chart template helm from community in [bitnami](https://github.com/bitnami/charts)
 * Use alias in command, i.e `alias k="kubectl"` and you can upload yaml file directly from kubernetes dashboard, click on + button and upload yaml file
+* If you want to update the service automatically replace, use command `kubectl rollout status deploy <deployment_name>` and for rollback use command `kubectl rollout undo deploy <deployment_name> --to-revision=1`
+* Changing container runtime from docker to another like containerd, cri-o, etc. [k8s container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/) and used command `minikube start --driver=virtualbox --container-runtime=<containerd|cri-o>`
