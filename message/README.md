@@ -12,3 +12,4 @@
 * [RabbitMQ Client liblary](https://www.rabbitmq.com/client-libraries/devtools)
 * [RabbitMQ Binder Stream](https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream-binder-rabbit.html#_rabbitmq_binder_overview)
 * [Kafka on Docker](https://developer.confluent.io/confluent-tutorials/kafka-on-docker/)
+* [Spring Cloud Kubernetes Discovery Server](https://docs.spring.io/spring-cloud-kubernetes/reference/spring-cloud-kubernetes-discoveryserver.html)
