@@ -10,7 +10,10 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic posTopic(){
-        return TopicBuilder.name("pos").build();
+        return TopicBuilder.name("log-entries")
+                .partitions(3)
+                .replicas(1)
+                .build();
     }
 
 }
